@@ -12,14 +12,19 @@ namespace Assignment
 {
     public static class Helper
     {
-        public static void Print<T>(this T value) => Console.WriteLine(value);
+        //public static void Print<T>(this T value) => Console.WriteLine(value);
         public static void Print<T>(this IEnumerable<T> values) where T : IEnumerable
         {
             foreach (T item in values) Console.WriteLine(item);
         }
-        public static void Print<T>(this List<T> values)
+        /// public static void Print<T>(this List<T> values)
+        /// {
+        ///     foreach (T item in values) Console.WriteLine(item);
+        /// }
+        public static void Print<T>(this ICollection<T> values)
         {
             foreach (T item in values) Console.WriteLine(item);
         }
+
     }
 }

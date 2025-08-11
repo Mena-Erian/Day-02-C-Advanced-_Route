@@ -179,10 +179,26 @@ namespace Demo
             ///                     new EmployeeComparerByName()).Print();
 
             #endregion
-           
+
+            #endregion
+
+            #region Generic Collections - LinkedList
+            /// LinkedList<int> numbers = new LinkedList<int>();
+            /// 
+            /// LinkedListNode<int> firstNode = numbers.AddFirst(1);
+            /// numbers.AddLast(1557);
+            /// //firstNode.Next!.Value.Print();
+            /// 
+            /// numbers.AddAfter(firstNode, 88);
+            /// numbers.AddBefore(numbers.Last ?? firstNode, 20);
+            /// 
+            /// numbers.Print();
+            
+            /// //String Builder it build based on linkedlist datastructre
             #endregion
         
-
+            
+        
         }
     }
 }
