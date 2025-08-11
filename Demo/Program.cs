@@ -1,6 +1,7 @@
 ﻿//using System.Collections;
 //using System.Collections.Generic;
 
+using Assignment;
 using System.Collections;
 
 namespace Demo
@@ -119,7 +120,68 @@ namespace Demo
             /// numbers.EnsureCapacity(21);
 
             /// Also Type Safte with Generic
+            #region List Methods
+            /// List<int> numbers = new List<int>(6) { 1, 2, 3, 4, 5 };
+
+            ///numbers.Insert(0, 100);
+            ///numbers.InsertRange(1, [-3,-2,-1]);
+
+            //numbers.ConvertAll<long>(delegate (int N)
+            //{
+            //    N += 100;
+            //    return N;
+            //}).Print();
+
+            /// numbers.Select<int, long>(i => i);
+            /// numbers.CopyTo()
+            /// numbers.Find((n) => n % 2 == 0).Print();
+            /// numbers.FindAll((n) => n % 2 == 0).Print(); // like fileter in js
+            /// numbers.FindIndex((n) => n % 2 == 0).Print();
+            /// numbers.FindLast((n) => n % 2 == 0).Print();
+            /// numbers.FindLastIndex((n) => n % 2 == 0).Print();
+
+            /// numbers.Exists((n) => n % 2 == 0).Print(); // like  some() in js
+            /// numbers.TrueForAll((n) => n % 2 == 0).Print(); // like every() in js
+
+            ///numbers.ForEach((n) => { Console.WriteLine(++n); });
+
+            /// numbers.GetRange(0, 3).Print();
+            ///
+            /// numbers.Print();
+            ///  "----------------------------".Print();
+            ///
+            /// numbers.Slice(0, 3).Print();
+            /// numbers.Print();
+            /// "----------------------------".Print();
+
+            /// numbers.IndexOf(2);
+
+            /// "----------------------------".Print();
+            /// IReadOnlyCollection<int> ReadOnlyCollection = numbers.AsReadOnly();
+            /// foreach (int i in ReadOnlyCollection) Console.WriteLine(i);
+
+            /// List<Employee> employees = new List<Employee>()
+            /// {
+            ///     new Employee(10,"Mena",5_000),
+            ///     new Employee(20,"Amany",2_000),
+            ///     new Employee(30,"Ahmed",8_000),
+            ///     new Employee(40,"Nadia",3_000)
+            /// };
+            /// 
+            /// ///employees.BinarySearch(new Employee() { Salary = 8000 }).Print();
+            /// 
+            /// employees.Sort(new EmployeeComparerByName());
+            /// 
+            /// employees.BinarySearch(new Employee() { Name = "Ahmed" },
+            ///                     new EmployeeComparerByName()).Print();
+            /// 
+            /// employees.BinarySearch(1,2,new Employee() { Name = "Ahmed" },
+            ///                     new EmployeeComparerByName()).Print();
+
             #endregion
+           
+            #endregion
+        
 
         }
     }
