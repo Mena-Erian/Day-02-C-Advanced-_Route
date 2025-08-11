@@ -220,6 +220,29 @@ namespace Demo
             /// stack.PrintAll<int>();
             #endregion
 
+            #region Generic Collections - Queue
+            /// // First In First Out
+            /// 
+            /// Queue<int> queue = new Queue<int>();
+            /// 
+            /// // add form the back 
+            /// queue.Enqueue(1);
+            /// queue.Enqueue(2);
+            /// queue.Enqueue(3);
+            /// 
+            /// queue.PrintAll<int>();
+            /// "----------------".Print();
+            /// 
+            /// /// queue.Dequeue().Print();
+            /// /// queue.Dequeue().Print();
+            /// /// queue.Dequeue().Print();
+            /// /// queue.TryDequeue(out _).Print();
+            /// 
+            /// /// queue.Peek().Print();
+            /// /// queue.Peek().Print();
+            /// /// queue.Peek().Print();
+            /// /// queue.TryPeek(out _).Print();
+            #endregion
         }
     }
 }
