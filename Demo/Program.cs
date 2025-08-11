@@ -92,7 +92,33 @@ namespace Demo
             /// 
             /// Console.WriteLine(SumOfArrayList(Numbers));///System.InvalidCastException: 'Unable to cast object of type 'System.String' to type 'System.Nullable`1[System.Int32]'.'
             #endregion
-            
+
+            #endregion
+
+            #region Generic Collections - List
+            /// List<int> Numbers = new List<int>(10);
+            /// 
+            /// Console.WriteLine($"Count = {Numbers.Count}, Capacity = {Numbers.Capacity}");
+            /// 
+            /// Numbers.Add(1);
+            /// Numbers.Add(2);
+            /// 
+            /// Numbers.AddRange([3, 4]);
+            /// Console.WriteLine($"Count = {Numbers.Count}, Capacity = {Numbers.Capacity}");
+            /// 
+            /// Numbers.Add(5);
+            /// //Numbers.AddRange([6, 7, 8, 9]); // thershold //90%
+            /// Console.WriteLine($"Count = {Numbers.Count}, Capacity = {Numbers.Capacity}");
+            /// 
+            /// Numbers.TrimExcess(); // Free | Deallocate | Release Unused Bytes = 12 Bytes
+            /// Console.WriteLine($"Count = {Numbers.Count}, Capacity = {Numbers.Capacity}");
+
+            /// List<int> numbers = new List<int>(5) { 1, 2, 3, 4 };
+            /// 
+            /// ///numbers[4] = 1; // Can't Used to set the non intilize values // or out of Current Count
+            /// numbers.EnsureCapacity(21);
+
+            /// Also Type Safte with Generic
             #endregion
 
         }
