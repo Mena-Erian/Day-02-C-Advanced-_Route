@@ -7,6 +7,18 @@ namespace Demo
 {
     internal class Program
     {
+        public static int SumOfArrayList(ArrayList numbers)
+        {
+            int Sum = 0;
+
+            if (numbers is not null)
+                for (int i = 0; i < numbers.Count; i++)
+                    Sum += (int?)numbers[i] ?? 0;
+            //             Casting From Object[ReferecneType] to int[ValueType]
+            //             UnBoxing [Unsafe Casting: May Throw InvalidCast Exception]
+
+            return Sum;
+        }
         static void Main()
         {
             #region Non-Generic Collections - ArrayList
@@ -63,6 +75,24 @@ namespace Demo
             /// /// to make it StaticReadOnly arr and it maked it in List
             #endregion
 
+            #region Part 03 NonGeneric Collections Cons
+            /// ArrayList Numbers = new ArrayList(4);
+            /// 
+            /// Numbers.Add(1); // Casting from int[ValueType] to object[ReferenceType] --> Boxing
+            /// Numbers.Add(2); // Casting from int[ValueType] to object[ReferenceType] --> Boxing
+            /// Numbers.Add(3); // Casting from int[ValueType] to object[ReferenceType] --> Boxing
+            /// Numbers.Add(4); // Casting from int[ValueType] to object[ReferenceType] --> Boxing
+            /// Numbers.Add("Hamada");// Compiler Can't Can't Enforce Type Type Safety
+            /// 
+            /// /// Use Array = if we have heterogeneous[valuse with diffrente dataType] and know the size 
+            /// and it fixed, so Array is a good choice
+            /// 
+            /// /// Use ArrayList = if you have the same case in Array but they dosn't fixed size
+            /// /// So ArrayList it will be good choice
+            /// 
+            /// Console.WriteLine(SumOfArrayList(Numbers));///System.InvalidCastException: 'Unable to cast object of type 'System.String' to type 'System.Nullable`1[System.Int32]'.'
+            #endregion
+            
             #endregion
 
         }
