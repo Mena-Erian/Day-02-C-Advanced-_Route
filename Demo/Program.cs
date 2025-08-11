@@ -193,12 +193,33 @@ namespace Demo
             /// numbers.AddBefore(numbers.Last ?? firstNode, 20);
             /// 
             /// numbers.Print();
-            
+
             /// //String Builder it build based on linkedlist datastructre
             #endregion
-        
-            
-        
+
+            #region Generic Collections - Stack
+            /// // Last In First Out
+            /// Stack<int> stack = new Stack<int>();
+            /// 
+            /// stack.Push(1);
+            /// stack.Push(2);
+            /// stack.Push(3);
+            /// 
+            /// stack.TryPeek(out _).Print();
+            /// stack.TryPeek(out _).Print();
+            /// stack.TryPeek(out _).Print();
+            /// stack.TryPeek(out _).Print();
+            /// 
+            /// stack.Clear();
+            /// 
+            /// /// stack.TryPop(out _).Print();
+            /// /// stack.TryPop(out _).Print();
+            /// /// stack.TryPop(out _).Print();
+            /// /// stack.TryPop(out _).Print();
+            /// "----------------".Print();
+            /// stack.PrintAll<int>();
+            #endregion
+
         }
     }
 }
