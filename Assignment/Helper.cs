@@ -203,7 +203,7 @@ namespace Assignment
                 case false:
                     do
                     {
-                        Console.WriteLine($"Please Enter the {massageToUser}: ");
+                        Console.WriteLine($"Please Enter {massageToUser}: ");
                     }
                     while (!int.TryParse(Console.ReadLine(), out number));
                     break;

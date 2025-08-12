@@ -60,8 +60,24 @@ namespace Assignment
                 if (item % T.CreateChecked(2) == T.Zero) list.Add(item);
             return list;
         }
-
-
+        internal static (string stateMsg, bool isFounded) Search<T>(Stack<T> values, T target) where T : IComparable<T>
+        {
+            int countOfStepsToFound = 0;
+            bool isFounded = false;
+            string stateMsg = "Target was not found";
+            int lengthOfValues = values.Count;
+            for (int i = 0; i < lengthOfValues; i++)
+            {
+                countOfStepsToFound++;
+                if (values.Pop().CompareTo(target) == 0)
+                {
+                    stateMsg = $"Target was found successfully and the count = {countOfStepsToFound}";
+                    isFounded = true;
+                    return (stateMsg, isFounded);
+                }
+            }
+            return (stateMsg, isFounded);
+        }
 
     }
 }

@@ -70,6 +70,31 @@ namespace Assignment
             /// numbers.PrintAll<int>();
             #endregion
 
+            #region 7. Implement a queue that can hold different data types.
+            /// Queue queue = new Queue();
+            /// queue.Enqueue(1);
+            /// queue.Enqueue("Apple");
+            /// queue.Enqueue(5.28);
+            /// 
+            /// foreach (object item in queue) Console.WriteLine(item);
+            #endregion
+
+            #region 8. Create a function that pushes a series of integers onto a stack.
+            /// //If you want to get the elemnents from user
+            /// /// int sizeOfArr = Helper.GetIntFromUser("Number Of Elements", false);
+            /// List<int> elements = Helper.GetArrFormUser<int>("The Values Of Elements, Separat with Space",
+            ///                                                 sizeOfArr, Helper.DefaultformatProvider);
+            /// 
+            /// int target = Helper.GetIntFromUser("The Target", false);
+            /// Stack<int> stack = new Stack<int>( [1, 2, 3, 58, 5, 568, 98, 489, 68, 3, 8]);
+            /// 
+            /// (string Msg, bool isFounded) result = CollectionCustomMehtods.Search(stack, target);
+            /// result.Msg.Print();
+            /// result.isFounded.Print();
+            #endregion
+
+
+
         }
     }
 }
