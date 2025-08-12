@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,5 +53,15 @@ namespace Assignment
                 if (!list.Contains(item)) list.Add(item);
             return list;
         }
+        internal static ArrayList RemoveOddsNumbers<T>(ArrayList values) where T : INumber<T>
+        {
+            ArrayList list = new ArrayList(values.Count);
+            foreach (T item in values)
+                if (item % T.CreateChecked(2) == T.Zero) list.Add(item);
+            return list;
+        }
+
+
+
     }
 }

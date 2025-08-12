@@ -63,6 +63,13 @@ namespace Assignment
             /// numbers.PrintAll();
             #endregion
 
+            #region 6. Given an array list , implement a function to remove all odd numbers from it.
+            /// ArrayList numbers = new ArrayList { 1, 2, 3, 4, 5, 4, 5, 6, 5, 7, 8, 9, 10, 3 };
+            /// 
+            /// numbers = CollectionCustomMehtods.RemoveOddsNumbers<int>(numbers);
+            /// numbers.PrintAll<int>();
+            #endregion
+
         }
     }
 }
