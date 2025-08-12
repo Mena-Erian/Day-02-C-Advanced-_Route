@@ -39,16 +39,30 @@ namespace Assignment
             #endregion
 
             #region 3. Given a Queue, implement a function to reverse the elements of a queue using a stack.
-            //First In First Out
-            Queue<int> queue = new Queue<int>();
-            queue.Enqueue(1);
-            queue.Enqueue(2);
-            queue.Enqueue(3);
-
-            CollectionCustomMehtods.Reverse(ref queue);
-            
-            queue.PrintAll<int>();
+            /// //First In First Out
+            /// Queue<int> queue = new Queue<int>();
+            /// queue.Enqueue(1);
+            /// queue.Enqueue(2);
+            /// queue.Enqueue(3);
+            /// 
+            /// CollectionCustomMehtods.Reverse(ref queue);
+            /// 
+            /// queue.PrintAll<int>();
             #endregion
+
+            #region 4. Given a Stack, implement a function to check if a string of parentheses is balanced using a stack.
+            //Still Not DONE
+            /// string parentheses = Helper.GetStringFromUser("The parentheses");
+            /// 
+            /// CollectionCustomMehtods.IsParenthesesBalanced(parentheses).Print();
+            #endregion
+
+            #region 5. Given an array, implement a function to remove duplicate elements from an array.
+            /// int[] numbers = { 1, 2, 3, 4, 5, 4, 5, 6, 5, 7, 8, 9, 10, 3 };
+            /// numbers = CollectionCustomMehtods.EliminatDuplicate(numbers).ToArray();
+            /// numbers.PrintAll();
+            #endregion
+
         }
     }
 }

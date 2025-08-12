@@ -234,18 +234,18 @@ namespace Assignment
         /// 
         ///     return number;
         /// }
-        /// public static string GetStringFromUser(string dataName)
-        /// {
-        ///     string str = string.Empty;
-        ///     do
-        ///     {
-        ///         Console.Write($"Please Enter the {dataName}: ");
-        ///         str = Console.ReadLine() ?? string.Empty;
-        ///     }
-        ///     while (str == string.Empty || int.TryParse(str, out _));
-        /// 
-        ///     return str;
-        /// }
+        public static string GetStringFromUser(string dataName)
+        {
+            string str = string.Empty;
+            do
+            {
+                Console.Write($"Please Enter {dataName}: ");
+                str = Console.ReadLine() ?? string.Empty;
+            }
+            while (str == string.Empty || int.TryParse(str, out _));
+        
+            return str;
+        }
         /// public static char GetCharFromUser(string msg, bool isMainMsg = false)
         /// {
         ///     char character = default(char);
