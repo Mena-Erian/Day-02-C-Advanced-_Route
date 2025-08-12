@@ -38,6 +38,17 @@ namespace Assignment
             /// List<int> arr = Helper.GetArrFormUser<int>(N, AlertType.boolean, Helper.DefaultformatProvider);
             #endregion
 
+            #region 3. Given a Queue, implement a function to reverse the elements of a queue using a stack.
+            //First In First Out
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(1);
+            queue.Enqueue(2);
+            queue.Enqueue(3);
+
+            CollectionCustomMehtods.Reverse(ref queue);
+            
+            queue.PrintAll<int>();
+            #endregion
         }
     }
 }
