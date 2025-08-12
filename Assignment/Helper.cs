@@ -1,0 +1,289 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assignment
+{
+    [Flags]
+    public enum AlertType
+    {
+        None = 1, Massege = 2, throwException = 4, boolean = 8
+    }
+    public static class Helper
+    {
+        internal static IFormatProvider DefaultformatProvider = CultureInfo.CurrentCulture;
+        public static int GetIntFromUserUsingTryParse(string dataName)
+        {
+            int number = 0;
+            do
+            {
+                Console.Write($"Please Enter {dataName}: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out number));
+            return number;
+        }
+        public static int GetIntFromUserUsingTryParse()
+        {
+            int number = 0;
+            do { }
+            while (!int.TryParse(Console.ReadLine(), out number));
+            return number;
+        }
+        public static List<T> GetArrFormUser<T>(string dataName, int arrSize,
+            IFormatProvider? formatProvider) where T : IParsable<T>
+        {
+
+            List<T> arr = new List<T>(arrSize);
+            Console.Write($"Please Enter {dataName}: ");
+
+            bool isValidInput = false;
+            string userinput;
+            string[] splitTheInputUser;
+            do
+            {
+                userinput = Console.ReadLine() ?? "";//"3 3 "
+                splitTheInputUser = userinput.Split(" ");
+                if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
+                else isValidInput = true;
+            }
+            while (!isValidInput);
+
+
+            for (int i = 0; i < splitTheInputUser.Length; i++)
+            {
+                isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T value);
+                if (!isValidInput || value is null) throw new Exception("YOUR INPUT is NOT VALID");
+                arr.Add(value);
+            }
+
+            return arr;
+        }
+        public static List<T> GetArrFormUser<T>(int arrSize,
+            IFormatProvider? formatProvider) where T : IParsable<T>
+        {
+
+            List<T> arr = new List<T>(arrSize);
+
+            bool isValidInput = false;
+            string userinput;
+            string[] splitTheInputUser;
+            do
+            {
+                userinput = Console.ReadLine() ?? "";//"3 3 "
+                splitTheInputUser = userinput.Split(" ");
+                if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
+                else isValidInput = true;
+            }
+            while (!isValidInput);
+
+
+            for (int i = 0; i < splitTheInputUser.Length; i++)
+            {
+                isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T value);
+                if (!isValidInput || value is null) throw new Exception("YOUR INPUT is NOT VALID");
+                arr.Add(value);
+            }
+
+            return arr;
+        }
+        public static List<T> GetArrFormUser<T>(int arrSize, AlertType @alertType,
+            IFormatProvider? formatProvider) where T : IParsable<T>
+        {
+            List<T> arr = new List<T>(arrSize);
+
+            bool isValidInput = false;
+            string userinput;
+            string[] splitTheInputUser;
+            switch (alertType)
+            {
+                /// I Should Handle another cases but i don't have time,
+                /// i will make it later (becouse this not requrment task) Thanks:)
+                case (AlertType)6:
+                    //Massege and Throw Exception
+                    do
+                    {
+                        userinput = Console.ReadLine() ?? "";//"3 3 "
+                        splitTheInputUser = userinput.Split(" ");
+                        if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
+                        else isValidInput = true;
+                    }
+                    while (!isValidInput);
+                    for (int i = 0; i < splitTheInputUser.Length; i++)
+                    {
+                        isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T value);
+                        if (!isValidInput || value is null) throw new Exception("YOUR INPUT is NOT VALID");
+                        else arr.Add(value);
+                    }
+                    break;
+                case AlertType.boolean:
+                    do
+                    {
+                        userinput = Console.ReadLine() ?? "";//"3 3 "
+                        splitTheInputUser = userinput.Split(" ");
+                        if (splitTheInputUser.Length != arrSize) Console.WriteLine("NO");
+                        else isValidInput = true;
+                    }
+                    while (!isValidInput);
+                    for (int i = 0; i < splitTheInputUser.Length; i++)
+                    {
+                        isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T? value);
+                        if (!isValidInput || value is null)
+                        {
+                            Console.WriteLine("NO");
+                            break;
+                        }
+                        else arr.Add(value);
+                    }
+                    if (isValidInput && splitTheInputUser.Length == arrSize) Console.Write("YES");
+                    break;
+                default:
+                    goto case (AlertType)6;
+            }
+            return arr;
+        }
+
+        /// public static int GetIntFromUserUsingParse(string dataName)
+        /// {
+        ///     int number = 0;
+        ///     bool isParsed = false;
+        ///     do
+        ///     {
+        ///         Console.Write($"Please Enter {dataName}: ");
+        ///         try
+        ///         {
+        ///             number = int.Parse(Console.ReadLine() ?? "");
+        ///             isParsed = true;
+        ///         }
+        ///         catch (Exception)
+        ///         {
+        ///             isParsed = false;
+        ///             Console.WriteLine("Your Input is Not Valid Try Again Try agian\n");
+        ///         }
+        ///     }
+        ///     while (!isParsed);
+        ///     return number;
+        /// }
+        /// public static int GetIntFromUserUsingConvert(string dataName)
+        /// {
+        ///     int number = 0;
+        ///     bool isParsed = false;
+        ///     do
+        ///     {
+        ///         Console.Write($"Please Enter {dataName}: ");
+        ///         try
+        ///         {
+        ///             number = Convert.ToInt32(Console.ReadLine() ?? "");
+        ///             isParsed = true;
+        ///         }
+        ///         catch (Exception)
+        ///         {
+        ///             isParsed = false;
+        ///             Console.WriteLine("Your Input is Not Valid Try Again Try agian\n");
+        ///         }
+        ///     }
+        ///     while (!isParsed);
+        ///     return number;
+        /// }
+        public static int GetIntFromUser(string massageToUser, bool isMainMsg = true)
+        {
+            int number = 0;
+            switch (isMainMsg)
+            {
+                case true:
+                    do
+                    {
+                        Console.Write(massageToUser);
+                    }
+                    while (!int.TryParse(Console.ReadLine(), out number));
+                    break;
+                case false:
+                    do
+                    {
+                        Console.WriteLine($"Please Enter {massageToUser}: ");
+                    }
+                    while (!int.TryParse(Console.ReadLine(), out number));
+                    break;
+            }
+
+            return number;
+        }
+        /// public static decimal GetDecimalFromUser(string massageToUser, bool isMainMsg = true)
+        /// {
+        ///     decimal number = 0;
+        ///     switch (isMainMsg)
+        ///     {
+        ///         case true:
+        ///         do
+        ///         {
+        ///             Console.Write(massageToUser);
+        ///         }
+        ///         while (!decimal.TryParse(Console.ReadLine(), out number));
+        ///         break;
+        ///         case false:
+        ///         do
+        ///         {
+        ///             Console.WriteLine($"Please Enter the {massageToUser}: ");
+        ///         }
+        ///         while (!decimal.TryParse(Console.ReadLine(), out number));
+        ///         break;
+        ///     }
+        /// 
+        ///     return number;
+        /// }
+        public static string GetStringFromUser(string dataName)
+        {
+            string str = string.Empty;
+            do
+            {
+                Console.Write($"Please Enter {dataName}: ");
+                str = Console.ReadLine() ?? string.Empty;
+            }
+            while (str == string.Empty || int.TryParse(str, out _));
+        
+            return str;
+        }
+        /// public static char GetCharFromUser(string msg, bool isMainMsg = false)
+        /// {
+        ///     char character = default(char);
+        ///     bool isParsed = false;
+        ///     if (isMainMsg)
+        /// {
+        ///     do
+        ///     {
+        ///         Console.Write(msg);
+        ///         isParsed = char.TryParse(Console.ReadLine(), out character);
+        ///     }
+        ///     while (!(isParsed && !int.TryParse(character.ToString(), out _)));
+        /// }
+        ///     else
+        /// {
+        ///     do
+        ///     {
+        ///         Console.Write($"Please Enter the {msg}: ");
+        ///         isParsed = char.TryParse(Console.ReadLine(), out character);
+        ///     }
+        ///     while (!(isParsed && !int.TryParse(character.ToString(), out _)));
+        /// }
+        /// 
+        ///     return character;
+        /// }
+        /////////////////////////////////////////////////////////////
+        public static void Print<T>(this T value) => Console.WriteLine(value);
+        public static void Print<T>(this IEnumerable<T> values) where T : IEnumerable
+        {
+            foreach (T item in values) Console.WriteLine(item);
+        }
+        public static void PrintAll<T>(this ICollection<T> values)
+        {
+            foreach (T item in values) Console.WriteLine(item);
+        }
+        public static void PrintAll<T>(this ICollection values)
+        {
+            foreach (T item in values) Console.WriteLine(item);
+        }
+    }
+}
