@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Assignment
 {
     public static class Helper
     {
+        internal static IFormatProvider DefaultformatProvider = CultureInfo.CurrentCulture;
         public static int GetIntFromUserUsingTryParse(string dataName)
         {
             int number = 0;
@@ -19,6 +21,43 @@ namespace Assignment
             while (!int.TryParse(Console.ReadLine(), out number));
             return number;
         }
+        public static int GetIntFromUserUsingTryParse()
+        {
+            int number = 0;
+            do { }
+            while (!int.TryParse(Console.ReadLine(), out number));
+            return number;
+        }
+        public static List<T> GetArrFormUser<T>(string dataName, int arrSize,
+            IFormatProvider? formatProvider) where T : IParsable<T>
+        {
+
+            List<T> arr = new List<T>(arrSize);
+            Console.Write($"Please Enter {dataName}: ");
+
+            bool isValidInput = false;
+            string userinput;
+            string[] splitTheInputUser;
+            do
+            {
+                userinput = Console.ReadLine() ?? "";//"3 3 "
+                splitTheInputUser = userinput.Split(" ");
+                if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
+                isValidInput = true;
+            }
+            while (!isValidInput);
+
+
+            for (int i = 0; i < splitTheInputUser.Length; i++)
+            {
+                isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T value);
+                if (!isValidInput || value is null) throw new Exception("YOUR INPUT is NOT VALID");
+                arr.Add(value);
+            }
+
+            return arr;
+        }
+
         /// public static int GetIntFromUserUsingParse(string dataName)
         /// {
         ///     int number = 0;
@@ -61,29 +100,29 @@ namespace Assignment
         ///     while (!isParsed);
         ///     return number;
         /// }
-        /// public static int GetIntFromUser(string massageToUser, bool isMainMsg = true)
-        /// {
-        ///     int number = 0;
-        ///     switch (isMainMsg)
-        ///     {
-        ///         case true:
-        ///             do
-        ///             {
-        ///                 Console.Write(massageToUser);
-        ///             }
-        ///             while (!int.TryParse(Console.ReadLine(), out number));
-        ///             break;
-        ///         case false:
-        ///             do
-        ///             {
-        ///                 Console.WriteLine($"Please Enter the {massageToUser}: ");
-        ///             }
-        ///             while (!int.TryParse(Console.ReadLine(), out number));
-        ///             break;
-        ///     }
-        /// 
-        ///     return number;
-        /// }
+        public static int GetIntFromUser(string massageToUser, bool isMainMsg = true)
+        {
+            int number = 0;
+            switch (isMainMsg)
+            {
+                case true:
+                    do
+                    {
+                        Console.Write(massageToUser);
+                    }
+                    while (!int.TryParse(Console.ReadLine(), out number));
+                    break;
+                case false:
+                    do
+                    {
+                        Console.WriteLine($"Please Enter the {massageToUser}: ");
+                    }
+                    while (!int.TryParse(Console.ReadLine(), out number));
+                    break;
+            }
+
+            return number;
+        }
         /// public static decimal GetDecimalFromUser(string massageToUser, bool isMainMsg = true)
         /// {
         ///     decimal number = 0;
