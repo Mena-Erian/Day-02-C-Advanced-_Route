@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Assignment
 {
+    [Flags]
+    public enum AlertType
+    {
+        None = 1, Massege = 2, throwException = 4, boolean = 8
+    }
     public static class Helper
     {
         internal static IFormatProvider DefaultformatProvider = CultureInfo.CurrentCulture;
@@ -43,7 +48,7 @@ namespace Assignment
                 userinput = Console.ReadLine() ?? "";//"3 3 "
                 splitTheInputUser = userinput.Split(" ");
                 if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
-                isValidInput = true;
+                else isValidInput = true;
             }
             while (!isValidInput);
 
@@ -55,6 +60,89 @@ namespace Assignment
                 arr.Add(value);
             }
 
+            return arr;
+        }
+        public static List<T> GetArrFormUser<T>(int arrSize,
+            IFormatProvider? formatProvider) where T : IParsable<T>
+        {
+
+            List<T> arr = new List<T>(arrSize);
+
+            bool isValidInput = false;
+            string userinput;
+            string[] splitTheInputUser;
+            do
+            {
+                userinput = Console.ReadLine() ?? "";//"3 3 "
+                splitTheInputUser = userinput.Split(" ");
+                if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
+                else isValidInput = true;
+            }
+            while (!isValidInput);
+
+
+            for (int i = 0; i < splitTheInputUser.Length; i++)
+            {
+                isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T value);
+                if (!isValidInput || value is null) throw new Exception("YOUR INPUT is NOT VALID");
+                arr.Add(value);
+            }
+
+            return arr;
+        }
+        public static List<T> GetArrFormUser<T>(int arrSize, AlertType @alertType,
+            IFormatProvider? formatProvider) where T : IParsable<T>
+        {
+            List<T> arr = new List<T>(arrSize);
+
+            bool isValidInput = false;
+            string userinput;
+            string[] splitTheInputUser;
+            switch (alertType)
+            {
+                /// I Should Handle another cases but i don't have time,
+                /// i will make it later (becouse this not requrment task) Thanks:)
+                case (AlertType)6:
+                    //Massege and Throw Exception
+                    do
+                    {
+                        userinput = Console.ReadLine() ?? "";//"3 3 "
+                        splitTheInputUser = userinput.Split(" ");
+                        if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
+                        else isValidInput = true;
+                    }
+                    while (!isValidInput);
+                    for (int i = 0; i < splitTheInputUser.Length; i++)
+                    {
+                        isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T value);
+                        if (!isValidInput || value is null) throw new Exception("YOUR INPUT is NOT VALID");
+                        else arr.Add(value);
+                    }
+                    break;
+                case AlertType.boolean:
+                    do
+                    {
+                        userinput = Console.ReadLine() ?? "";//"3 3 "
+                        splitTheInputUser = userinput.Split(" ");
+                        if (splitTheInputUser.Length != arrSize) Console.WriteLine("NO");
+                        else isValidInput = true;
+                    }
+                    while (!isValidInput);
+                    for (int i = 0; i < splitTheInputUser.Length; i++)
+                    {
+                        isValidInput = T.TryParse(splitTheInputUser[i], formatProvider, out T? value);
+                        if (!isValidInput || value is null)
+                        {
+                            Console.WriteLine("NO");
+                            break;
+                        }
+                        else arr.Add(value);
+                    }
+                    if (isValidInput && splitTheInputUser.Length == arrSize) Console.Write("YES");
+                    break;
+                default:
+                    goto case (AlertType)6;
+            }
             return arr;
         }
 
