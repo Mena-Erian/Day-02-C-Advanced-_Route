@@ -15,7 +15,7 @@ namespace Assignment
     }
     public static class Helper
     {
-        internal static IFormatProvider DefaultformatProvider = CultureInfo.CurrentCulture;
+        public static IFormatProvider DefaultformatProvider = CultureInfo.CurrentCulture;
         public static int GetIntFromUserUsingTryParse(string dataName)
         {
             int number = 0;
@@ -34,7 +34,7 @@ namespace Assignment
             return number;
         }
         public static List<T> GetArrFormUser<T>(string dataName, int arrSize,
-            IFormatProvider? formatProvider) where T : IParsable<T>
+                    IFormatProvider? formatProvider, char[]? seperators = null) where T : IParsable<T>
         {
 
             List<T> arr = new List<T>(arrSize);
@@ -46,8 +46,8 @@ namespace Assignment
             do
             {
                 userinput = Console.ReadLine() ?? "";//"3 3 "
-                splitTheInputUser = userinput.Split(" ");
-                if (splitTheInputUser.Length != arrSize) Console.WriteLine("Your Input is Not Valid");
+                splitTheInputUser = userinput.Split(seperators ?? [' '], StringSplitOptions.RemoveEmptyEntries);
+                if (splitTheInputUser.Length != arrSize) Console.Write("Count of Array is not true Please Try Again: ");
                 else isValidInput = true;
             }
             while (!isValidInput);
@@ -62,6 +62,7 @@ namespace Assignment
 
             return arr;
         }
+
         public static List<T> GetArrFormUser<T>(int arrSize,
             IFormatProvider? formatProvider) where T : IParsable<T>
         {
@@ -203,7 +204,7 @@ namespace Assignment
                 case false:
                     do
                     {
-                        Console.WriteLine($"Please Enter {massageToUser}: ");
+                        Console.Write($"Please Enter {massageToUser}: ");
                     }
                     while (!int.TryParse(Console.ReadLine(), out number));
                     break;
@@ -243,7 +244,7 @@ namespace Assignment
                 str = Console.ReadLine() ?? string.Empty;
             }
             while (str == string.Empty || int.TryParse(str, out _));
-        
+
             return str;
         }
         /// public static char GetCharFromUser(string msg, bool isMainMsg = false)

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Assignment
@@ -59,7 +60,7 @@ namespace Assignment
 
             #region 5. Given an array, implement a function to remove duplicate elements from an array.
             /// int[] numbers = { 1, 2, 3, 4, 5, 4, 5, 6, 5, 7, 8, 9, 10, 3 };
-            /// numbers = CollectionCustomMehtods.EliminatDuplicate(numbers).ToArray();
+            /// numbers = CollectionCustomMehtods.EliminatDuplicate(numbers, out _).ToArray();
             /// numbers.PrintAll();
             #endregion
 
@@ -79,7 +80,7 @@ namespace Assignment
             /// foreach (object item in queue) Console.WriteLine(item);
             #endregion
 
-            #region 8. Create a function that pushes a series of integers onto a stack.
+            #region 8. Create a function that pushes a series of integers onto a stack,..
             /// //If you want to get the elemnents from user
             /// /// int sizeOfArr = Helper.GetIntFromUser("Number Of Elements", false);
             /// List<int> elements = Helper.GetArrFormUser<int>("The Values Of Elements, Separat with Space",
@@ -93,7 +94,26 @@ namespace Assignment
             /// result.isFounded.Print();
             #endregion
 
-
+            #region 9. Given two arrays, find their intersection. Each element in the result should appear as many times as it shows in both arrays.
+            /// List<int> lengthOfTwoArr = Helper.GetArrFormUser<int>("The Length of Array1, Array2 | Separat with ','",
+            ///                                                 2, Helper.DefaultformatProvider, [',']);
+            /// 
+            /// List<int> arr1 = Helper.GetArrFormUser<int>("The Length of Array 1 | Separat with ','",
+            ///                                                 lengthOfTwoArr[0], Helper.DefaultformatProvider
+            ///                                                   , [',', '[', ']',' ']);
+            /// List<int> arr2 = Helper.GetArrFormUser<int>("The Length of Array 2 | Separat with ','",
+            ///                                                 lengthOfTwoArr[1], Helper.DefaultformatProvider
+            ///                                                   , [',', '[', ']',' ']);
+            /// 
+            /// // Test Case
+            /// ///List<int> arr1 = new List<int>([1, 2, 3, 4, 4]);
+            /// ///List<int> arr2 = new List<int>([10, 4, 4]);
+            /// ///
+            /// ///List<int> arr1 = new List<int>([2, 2, 3, 5, 5, 5, 7]);
+            /// ///List<int> arr2 = new List<int>([5, 2, 2, 5, 8]);
+            /// 
+            /// CollectionCustomMehtods.GetIntersection(arr1, arr2).PrintAll();
+            #endregion
 
         }
     }
